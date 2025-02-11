@@ -62,6 +62,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
+Setup firebase using `npm i firebase`
+Deploy App to firebase using `firebase login`, `firebase init`, `firebase deploy`
+
+### Redux Toolkit 
+Created Redux store with userSlice
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
