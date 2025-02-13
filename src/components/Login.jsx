@@ -45,7 +45,6 @@ const Login = () => {
           // Sign up
           //Updating User Info
           const user = userCredential.user;
-          console.log(user);
           updateProfile(auth.currentUser, {
             displayName: name?.current?.value,
             photoURL:AVTAR
