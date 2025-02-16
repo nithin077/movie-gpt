@@ -6,8 +6,23 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NTk3YjliMjdmYzVhNTk2YjM4NTJjMmI1M2IyZWE2YyIsIm5iZiI6MTczOTQ2MjQxMS43OTcsInN1YiI6IjY3YWUxNzBiNjQ1NjY5MTM3ZTlmNjJmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R_jWSJY-lyVIHuYgaZeltL1wOXcd5HoNOM7NE8TzXow'
+        Authorization: 'Bearer '+ process.env.REACT_APP_TMDB_KEY
     }
 };
 
-export const IMG_CDN = "https://image.tmdb.org/t/p/w500"
+export const IMG_CDN = "https://image.tmdb.org/t/p/w500";
+export const OPENAPI_KEY = process.env.REACT_APP_OPENAPI_KEY;
+export const SUPPORTED_LANGUAGES = [
+    {
+        identifier : "en",
+        name : "English"
+    },
+    {
+        identifier : "hindi",
+        name : "Hindi"
+    },
+    {
+        identifier : "spanish",
+        name : "Spanish"
+    },
+]
