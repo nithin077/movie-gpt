@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../sharedcomponents/Firebase";
 import { useNavigate } from "react-router";
@@ -7,12 +7,17 @@ import { addUser, removeUser } from "../sharedcomponents/UserSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../sharedcomponents/Constant";
 import { toggleGptSearchView } from "../sharedcomponents/GptSlice";
 import { changeLanguage } from "../sharedcomponents/ConfigSlice";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const isGptSearchEnabled = useSelector(store => store.gpt.showGptSearch)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
 
   const handleGptSearch = () => {
     //Toggle GPT Search
@@ -25,7 +30,7 @@ const Header = () => {
 
   const handeleSignOut = () => {
     signOut(auth)
-      .then(() => {})
+      .then(() => { })
       .catch((error) => {
         navigate("/error");
         console.log(error);
@@ -57,35 +62,42 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img src={LOGO} alt="logo" className="w-44" />
+    <div className="bg-black absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-row justify-between">
+      <img src={LOGO} alt="logo" className="w-24 md:w-44 mx-1 md:mx-0" />
+      {/* <div className='flex lg:hidden sm:block bg-black items-center justify-center rounded-full'>
+        <button className='text-2xl p-3 border border-orange rounded-full text-white' onClick={toggleMenu}>
+          <GiHamburgerMenu />
+        </button>
+      </div> */}
 
       {user && (
-        <div className="flex p-2 items-center">
-          {isGptSearchEnabled && <select name="multi-language" className="m-6 py-2 px-3 rounded-md" onChange={handleLanguageChange}>
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
-            ))}
-          </select>}
-          <button
-            className="py-2 px-4 m-4 bg-teal-400 rounded-md mx-2 text-black"
-            onClick={handleGptSearch}
-          >
-           {!isGptSearchEnabled ? " GPT Search" : "HomePage"}
-          </button>
+        // <div className={`${menuOpen ? "block" : "hidden"} md:block `}>
+          <div>
+            {isGptSearchEnabled && <select name="multi-language" className="m-2 md:m-6 py-1 md:py-2 px-2 md:px-3 rounded-md" onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+              ))}
+            </select>}
+            <button
+              className="py-1 md:py-2 px-2 md:px-4 m-2 md:m-4 bg-teal-400 rounded-md mx-2 text-black"
+              onClick={handleGptSearch}
+            >
+              {!isGptSearchEnabled ? " GPT Search" : "HomePage"}
+            </button>
             <img
-              className="w-12 h-12"
+              className="w-12 h-12 md:inline-block hidden"
               src={user?.photoUrl}
               alt="profileimage"
             />
             <button
               onClick={handeleSignOut}
-              className="text-white bg-red-600 rounded-md mx-4 py-2 px-4"
+              className="text-white bg-red-600 rounded-md mx:2 md:mx-4 py-1 md:py-2 px-2 md:px-4"
             >
-              Sign Out
+              SignOut
             </button>
+          </div>
 
-        </div>
+        // </div>
       )}
     </div>
   );
