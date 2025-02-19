@@ -2,11 +2,10 @@ import React from 'react'
 import MovieCards from './MovieCards'
 
 const MovieSection = ( {title, movies} ) => {
-  
-    //{movies.map(movie =>  console.log(movie))}
+    if(!movies) return null;
     return (
         <div className='px-4 '>
-            <h1 className='text-2xl py-2 text-white'>{title}</h1>
+            <h1 className='text-lg md:text-2xl py-2 text-white'>{title}</h1>
             <div className='flex overflow-x-scroll hide-scrollbar'>
                 <div className='flex'>
                     {

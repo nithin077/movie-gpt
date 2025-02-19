@@ -9,7 +9,7 @@ const MoviePlayingMain = () => {
     const mainMovie = movies[0];
     const {original_title, overview,id} = mainMovie
   return (
-    <div>
+    <div className='pt-[17%] md:pt-0'>
         <VideoTitle title={original_title} overview={overview}/>
         <VideoBackground movieId = {id}/>
     </div>
