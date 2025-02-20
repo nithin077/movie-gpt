@@ -11,14 +11,12 @@ const MovieCards = ({movie}) => {
   const dispatch = useDispatch();
 
   const handleAddWatchList = (movieWishListed) => {
-    console.log(movieWishListed);
     if(!isWatchListAdded) {
-      setIsWatchListAdded(isWatchListAdded);
       dispatch(addWatchListMovies(movieWishListed));
     }
     else {
-      setIsWatchListAdded(!isWatchListAdded);
-      dispatch(removeFromWatchList(movie?.id));
+      console.log(movie.id)
+      dispatch(removeFromWatchList(movie.id));
     }
   }
 
@@ -29,8 +27,8 @@ const MovieCards = ({movie}) => {
       <div className='flex flex-row justify-between items-start pt-3'>
         <p className='text-white'>{movie?.title}</p>
         <div>
-          {isWatchListAdded ? <BsHeartFill className='text-white size-7 cursor-pointer bg-cyan-400' onClick={() => handleAddWatchList(movie,isWatchListAdded)}/> : 
-          <RiHeartAdd2Line className='text-white size-7 cursor-pointer' onClick={() => handleAddWatchList(movie,!isWatchListAdded)}/>
+          {isWatchListAdded ? <BsHeartFill color='cyan' className='text-white size-6 cursor-pointer ' onClick={() => handleAddWatchList(movie,setIsWatchListAdded(false))}/> : 
+          <RiHeartAdd2Line className='text-white size-7 cursor-pointer' onClick={() => handleAddWatchList(movie,setIsWatchListAdded(true))}/>
           }
         </div>
       </div>

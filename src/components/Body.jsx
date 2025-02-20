@@ -1,21 +1,33 @@
 import React from 'react'
 import Login from './Login'
 import Browse from './Browse'
-import {createBrowserRouter, RouterProvider} from 'react-router'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router'
+import WatchList from './WatchList'
+import Header from './Header'
 
 
 const Body = () => {
 
     const appRouter = createBrowserRouter([
         {
-            path : "/",
-            element : <Login />
-        },
-        {
-            path : "/browse",
-            element : <Browse />
+            path: '/',
+            element: <div><Header /><Outlet/></div>,
+            children: [
+                {
+                    path: "/",
+                    element: <Login />
+                },
+                {
+                    path: "/browse",
+                    element: <Browse />
+                },
+                {
+                    path: "/watchlist",
+                    element: <WatchList />
+                },
+            ]
         }
-    ]); 
+    ]);
 
     return (
         <div>

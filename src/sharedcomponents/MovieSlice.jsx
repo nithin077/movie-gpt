@@ -8,8 +8,7 @@ const movieSlice = createSlice({
         popularMovies : null,
         topRatedMovies : null,
         upComingMovies : null,
-        addToWatchList : [],
-        removeFromWatchList : []
+        watchListMovies : []
     },
     reducers : {
         addPlayingMovies : (state,action) => {
@@ -28,10 +27,10 @@ const movieSlice = createSlice({
             state.upComingMovies = action.payload;
         },
         addWatchListMovies : (state,action) => {
-            state.addToWatchList.push(action.payload);
+            state.watchListMovies.push(action.payload);
         },
         removeFromWatchList : (state,action) => {
-            state.removeFromWatchList.splice(action.payload,1)
+            state.watchListMovies = state.watchListMovies.filter(movie => movie.id !== action.payload);
         }
     }
 });
