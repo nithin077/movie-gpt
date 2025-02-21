@@ -1,5 +1,6 @@
 import React from 'react'
 import MovieCards from './MovieCards'
+import { Link } from 'react-router';
 
 const MovieSection = ( {title, movies} ) => {
     if(!movies) return null;
@@ -10,7 +11,9 @@ const MovieSection = ( {title, movies} ) => {
                 <div className='flex'>
                     {
                     movies?.map((movie) => ( 
-                         <MovieCards key={movie.id} movie={movie}/>
+                        <Link to={'/movie/'+movie.id} key={movie.id}>
+                            <MovieCards  movie={movie}/>
+                        </Link>
                         )
                     )}
                 </div>

@@ -4,6 +4,8 @@ import Browse from './Browse'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router'
 import WatchList from './WatchList'
 import Header from './Header'
+import GptSearch from './GptSearch'
+import MovieDetails from './MovieDetails'
 
 
 const Body = () => {
@@ -22,8 +24,16 @@ const Body = () => {
                     element: <Browse />
                 },
                 {
-                    path: "/watchlist",
+                    path : 'gptserach',
+                    element : <GptSearch />
+                },
+                {
+                    path: "watchlist",
                     element: <WatchList />
+                },
+                {
+                    path: "movie/:id",
+                    element: <MovieDetails />
                 },
             ]
         }

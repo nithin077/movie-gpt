@@ -14,13 +14,13 @@ import { Link } from "react-router";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const watchListMovies = useSelector(store => store.movies?.watchListMovies);
+  const watchListMovies = useSelector((store) => store.movies?.watchListMovies);
   const user = useSelector((store) => store.user);
-  const isGptSearchEnabled = useSelector(store => store.gpt.showGptSearch)
+  const isGptSearchEnabled = useSelector((store) => store.gpt.showGptSearch);
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  }
+  };
 
   const handleGptSearch = () => {
     //Toggle GPT Search
@@ -29,7 +29,7 @@ const Header = () => {
 
   const handleLanguageChange = (event) => {
     dispatch(changeLanguage(event.target.value));
-  }
+  };
 
   const handeleSignOut = () => {
     signOut(auth)
@@ -70,7 +70,7 @@ const Header = () => {
         <img src={LOGO} alt="logo" className="w-24 md:w-44 mx-1 md:mx-0" />
 
         {user && (
-          <div className="flex items-center ml-auto">
+          <ul className="flex items-center gap-8 md:px-4 px-2 md:py-4 py-2">
             {isGptSearchEnabled && (
               <select
                 name="multi-language"
@@ -84,32 +84,34 @@ const Header = () => {
                 ))}
               </select>
             )}
-            <button
-              className="py-1 md:py-2 px-2 md:px-4 m-2 md:m-4 bg-teal-400 rounded-md mx-2 text-black"
-              onClick={handleGptSearch}
-            >
-              {!isGptSearchEnabled ? "GPT Search" : "HomePage"}
-            </button>
-            <span className="relative py-1 md:py-2 px-2 md:px-4s m-2 md:m-4 rounded-md text-2xl cursor-pointer text-white">
+            <Link to="/browse">
+              <li className="text-white font-bold hover:text-cyan-500">Home</li>
+            </Link>
+            <Link to="/gptserach">
+              <li className=" text-white hover:text-cyan-500">
+                GPT Search
+              </li>
+            </Link>
             <Link to="/watchlist">
-              <RiHeartAdd2Line className="text-3xl"/>
-              <span className="absolute top-0 right-0 transform -translate-y-1/4 translate-x-1/4 rounded-full bg-red-600 text-xs w-4 h-4 text-white flex items-center justify-center">
-                {watchListMovies && watchListMovies.length}
-              </span>
-              </Link>
-            </span>
+              <li className="relative rounded-md text-2xl cursor-pointer text-white">
+                <RiHeartAdd2Line className="text-3xl hover:text-cyan-500" />
+                <span className="absolute top-0 right-0 transform -translate-y-1/4 translate-x-1/4 rounded-full bg-red-600 text-xs w-4 h-4 text-white flex items-center justify-center">
+                  {watchListMovies && watchListMovies.length}
+                </span>
+              </li>
+            </Link>
             <img
               className="w-12 h-12 md:inline-block hidden"
               src={user?.photoUrl}
               alt="profileimage"
             />
-            <button
+            <li
               onClick={handeleSignOut}
-              className="text-white bg-red-600 rounded-md mx:2 md:mx-4 py-1 md:py-2 px-2 md:px-4"
+              className="text-white rounded-md cursor-pointer hover:text-red-600"
             >
               SignOut
-            </button>
-          </div>
+            </li>
+          </ul>
         )}
       </div>
       {/* <div className='flex lg:hidden sm:block bg-black items-center justify-center rounded-full'>
@@ -119,7 +121,6 @@ const Header = () => {
         </div> */}
     </div>
   );
-
 };
 
 export default Header;
