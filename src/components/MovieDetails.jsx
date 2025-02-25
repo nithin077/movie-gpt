@@ -10,7 +10,6 @@ const MovieDetails = () => {
 
   useMovieDetailsById(id);
   const movieDetails = useSelector(store => store.movies.movieDetails);
-  console.log(movieDetails)
 
   return (
     <div className='pt-[45%] md:pt-[10%] flex flex-row pl-10 '>
