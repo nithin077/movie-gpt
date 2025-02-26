@@ -1,6 +1,5 @@
 import React from 'react'
 import MovieCards from './MovieCards'
-import { Link } from 'react-router';
 
 const MovieSection = ({ title, movies }) => {
     if (!movies) return null;
