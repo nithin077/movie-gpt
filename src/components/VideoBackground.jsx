@@ -7,6 +7,8 @@ const VideoBackground = ({ movieId }) => {
     const trailerVideo = useSelector(store => store.movies?.movieTrailer);
     useMovieTrailer(movieId);
 
+    //Video backGround on Home Screen
+
     return (
         <div className="w-screen">
             <iframe
