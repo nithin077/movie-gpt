@@ -8,7 +8,6 @@ const VideoBackground = ({ movieId }) => {
     useMovieTrailer(movieId);
 
     //Video backGround on Home Screen
-
     return (
         <div className="w-screen">
             <iframe
