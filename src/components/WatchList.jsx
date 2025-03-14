@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 const WatchList = () => {
   const movieDetails = useSelector(store => store.movies.watchListMovies);
   const isWatchListed = true;
-
   //Adding the Watch List UI
   return (
     <div className='pt-[10%] mx-14'>
